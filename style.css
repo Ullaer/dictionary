@@ -1,30 +1,28 @@
-/* STYLING */
-
 @font-face {
   font-family: garamondt;
-  src: url(/assets/Garamondt-Regular.woff);
+  src: url(assets/Garamondt-Regular.woff);
   font-style: normal;
 }
 @font-face {
   font-family: garamondt;
-  src: url(/assets/Garamondt-Italic.woff);
+  src: url(assets/Garamondt-Italic.woff);
   font-style: italic;
 }
 @font-face {
     font-family: nordvest;
-    src: url(/assets/NordvestWeb-Regular.eot);
-    src: url(/assets/NordvestWeb-Regular.eot?#iefix) format('embedded-opentype'),
-    	 url(/assets/NordvestWeb-Regular.woff2) format('woff2'),
-         url(/assets/NordvestWeb-Regular.woff) format('woff');
+    src: url(assets/NordvestWeb-Regular.eot);
+    src: url(assets/NordvestWeb-Regular.eot?#iefix) format('embedded-opentype'),
+    	 url(assets/NordvestWeb-Regular.woff2) format('woff2'),
+         url(assets/NordvestWeb-Regular.woff) format('woff');
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
     font-family: nordvest;
-    src: url(/assets/NordvestWeb-RegularItalic.eot);
-    src: url(/assets/NordvestWeb-RegularItalic.eot?#iefix) format('embedded-opentype'),
-    	 url(/assets/NordvestWeb-RegularItalic.woff2) format('woff2'),
-         url(/assets/NordvestWeb-RegularItalic.woff) format('woff');
+    src: url(assets/NordvestWeb-RegularItalic.eot);
+    src: url(assets/NordvestWeb-RegularItalic.eot?#iefix) format('embedded-opentype'),
+    	 url(assets/NordvestWeb-RegularItalic.woff2) format('woff2'),
+         url(assets/NordvestWeb-RegularItalic.woff) format('woff');
     font-weight: normal;
     font-style: italic;
 }
@@ -33,11 +31,10 @@ h1 {
   font-family: nordvest, sans-serif;
   font-size: 6rem;
   color: 566122;
-  margin: 0;
-  position: absolute;
+  /* margin: 0;
   bottom: 40vh;
   left: 1rem;
-  text-align: center;
+  text-align: center; */
 }
 
 h2 {
@@ -91,20 +88,69 @@ body {
   z-index: 999;
 }
 
+/* ----------------INTRO------------------ */
+
 #intro {
-  background-image: url(/assets/hero-rungot.jpg);
   height: 100vh;
+  overflow: hidden;
+}#intro img {
+  filter: invert(32%) sepia(43%) saturate(300%) hue-rotate(30deg) brightness(98%) contrast(92%);
+  width: 1920px;
 }
 
+.clip {
+  position: absolute;
+  background-repeat: no-repeat;
+}
+
+#clip-nahda {
+  transform: translate(50px,180px);
+  width: 560px;
+  height: 170px;
+  background-image: url(assets/hero-nahda.png);
+  background-size: 90%;
+  clip-path: polygon(10% 0%, 90% 0%, 100% 100%, 5% 100%);;
+}
+#clip-metsa {
+  transform: translate(570px,300px);
+  width: 480px;
+  height: 170px;
+  background-image: url(assets/hero-metsa.png);
+  background-size: 90%;
+  clip-path: polygon(5% 0%, 90% 0%, 100% 100%, 10% 100%);;
+}
+#clip-puilta {
+  transform: translate(730px,450px);
+  width: 560px;
+  height: 240px;
+  background-image: url(assets/hero-puilta.png);
+  background-size: 95%;
+  clip-path: polygon(10% 0%, 90% 0%, 100% 100%, 5% 100%);;
+}
+
+/* ----------------ABOUT------------------ */
 #about{
-  width:100vw;
-  height: auto;
+  width: 100vw;
+  height: 100%;
   padding: 10vw;
-}#about > p {
-  font-size: 2.5rem;
-  width:100%;
+  background-color: #ece0c6;
+  display: flex;
+  gap: 5%;
+}#about h1 {
+  font-size: 3rem !important;
+}#about p {
+  margin-top: 0;
+  width: 100%;
 }
 
+.col-left {
+  width: 40%;
+}
+.col-right {
+  flex: 1;
+}
+
+/* ----------------3D / CONTENT------------------ */
 #iframe {
   position: fixed;
   background-color: #ece0c6;
@@ -115,16 +161,11 @@ body {
   top: 0;
   left: 0;
   padding: 0 5vw 0 5vw;
-  overscroll-behavior: contain; /* Stop scrolling the parent site -----NOT WORKING */
 }
 
 .scene3D > div h2 {
   margin-top: 0;
   font-size: 3rem;
-}
-
-#footer {
-  height: 100vh;
 }
 
 .img { /* Filter for colorizing bw images */
@@ -137,44 +178,62 @@ body {
   mix-blend-mode: multiply;
 }
 
-.clip {
-  position: absolute;
-  background-repeat: no-repeat;
+.card {
+  padding: 2rem;
+  /* padding-bottom: 20rem; */
+  background-color: #ece0c6;
+  border: 3px solid #566122;
+  height: 600px;
+  transition: 1s;
+}
+.card:hover {
+  color: #ff8a00;
+  border: 3px solid #ff8a00;
+  /* transform: none !important; */
+  /* transform-origin: center center 50px !important; */
 }
 
-#clip-nahda {
-  transform: translate(50px,180px);
-  width: 560px;
-  height: 170px;
-  background-image: url(/assets/hero-nahda.png);
-  background-size: 90%;
-  clip-path: polygon(10% 0%, 90% 0%, 100% 100%, 5% 100%);;
-}
-#clip-metsa {
-  transform: translate(570px,300px);
-  width: 480px;
-  height: 170px;
-  background-image: url(/assets/hero-metsa.png);
-  background-size: 90%;
-  clip-path: polygon(5% 0%, 90% 0%, 100% 100%, 10% 100%);;
-}
-#clip-puilta {
-  transform: translate(730px,450px);
-  width: 560px;
-  height: 240px;
-  background-image: url(/assets/hero-puilta.png);
-  background-size: 95%;
-  clip-path: polygon(10% 0%, 90% 0%, 100% 100%, 5% 100%);;
+.open {
+  width: 1200px !important;
+  position: absolute !important;
+  top: 5vw !important;
+  left: 5vw !important;
+  transform-style: flat;
+  transform: none !important;
+  overscroll-behavior: contain;
 }
 
-/* .link {
-  color: white;
-  margin: 0;
+.close {
   position: fixed;
-  top: 1rem;
-  right: 1rem;
-  z-index: 1;
-} */
+  top: 7vw;
+  right: 6vw;
+  background-color: transparent !important;
+  border: none;
+  color: #566122;
+  text-align: center;
+  text-decoration: none;
+  font-family: garamondt, serif;
+  font-size: 2rem;
+}
+
+.close:hover {
+  font-style: italic;
+}
+
+.hide {
+  display: none; 
+}
+
+.no-scroll {
+  height: 100%;
+  overflow: hidden;
+}
+
+.oksa {
+  background: none;
+  pointer-events:none;
+  width: 200%;
+}
 
 .linkSpanner{
   position:absolute; 
@@ -184,6 +243,8 @@ body {
   left: 0;
   z-index: 1;
 }
+
+/* ----------------SCROLLYTELLING----------------- */
 
 .scrolly-container {
   display: flex;
@@ -226,65 +287,13 @@ body {
   }
 }
 
-.card {
-  padding: 2rem;
-  /* padding-bottom: 20rem; */
-  background-color: #ece0c6;
-  border: 3px solid #566122;
-  height: 600px;
-  transition: 1s;
-}
-.card:hover {
-  color: #ff8a00;
-  border: 3px solid #ff8a00;
-  /* transform: none !important; */
-  /* transform-origin: center center 50px !important; */
+/* ----------------FOOTER------------------ */
+
+#footer {
+  height: 100vh;
 }
 
-.open {
-  width: 1200px !important;
-  position: absolute !important;
-  top: 5vw !important;
-  left: 5vw !important;
-  transform-style: flat;
-  transform: none !important;
-  overscroll-behavior: contain;
-}
-
-.close {
-  position: fixed;
-  top: 7vw;
-  right: 6vw;
-  background-color: transparent !important;
-  border: none;
-  color: #566122;
-  /* padding: 15px 32px; */
-  text-align: center;
-  text-decoration: none;
-  font-family: garamondt, serif;
-  font-size: 2rem;
-}
-
-.close:hover {
-  font-style: italic;
-}
-
-.hide {
-  display: none; 
-}
-
-.no-scroll {
-  height: 100%;
-  overflow: hidden;
-}
-
-.oksa {
-  background: none;
-  pointer-events:none;
-  width: 200%;
-}
-
-/* 3D SCROLLING on the z axis - Vincent Humeau */
+/* ---------3D SCROLLING on the z axis - Vincent Humeau ------------*/
 :root {
   --scenePerspective: 1;
   --scenePerspectiveOriginX: 50;
@@ -298,7 +307,7 @@ body {
 
 .viewport {
   height: calc(var(--viewportHeight) * 1px);
-  background: url(/assets/havut.jpg) no-repeat center center fixed; 
+  background: url(assets/havut.jpg) no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
