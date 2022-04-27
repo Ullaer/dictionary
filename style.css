@@ -1,0 +1,487 @@
+/* STYLING */
+
+@font-face {
+  font-family: garamondt;
+  src: url(/links/Garamondt-Regular.woff);
+  font-style: normal;
+}
+@font-face {
+  font-family: garamondt;
+  src: url(/links/Garamondt-Italic.woff);
+  font-style: italic;
+}
+@font-face {
+  font-family: nordvest;
+  src: url(/links/NordvestTrial-Regular.otf);
+  font-style: normal;
+}
+@font-face {
+  font-family: nordvest;
+  src: url(/links/NordvestTrial-RegularItalic.otf);
+  font-style: italic;
+}
+
+h1 {
+  font-family: nordvest, sans-serif;
+  font-size: 6rem;
+  color: 566122;
+  margin: 0;
+  position: absolute;
+  bottom: 40vh;
+  left: 1rem;
+  text-align: center;
+}
+
+h2 {
+  font-family: nordvest, sans-serif;
+  font-size: 4rem;
+  margin-block-start: 0.5rem;
+  margin-block-end: 0.2rem;
+}
+
+p {
+  font-family: nordvest, sans-serif;
+  font-size: 1.5rem;
+  width: 40vw;
+}
+
+a {
+  text-decoration: none;
+  color: #566122;
+  transition: 0.2s;
+}
+a:hover,:focus {
+  color: #ff8a00;
+  outline: none;
+}
+
+.theme {
+  font-family: nordvest, sans-serif;
+  font-size: 1.3rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-block-start: 2rem;
+  margin-block-end: 0.2rem;
+}
+
+.translation {
+  font-family: garamondt, serif;
+  font-size: 2rem;
+  font-style: italic;
+  margin-block-start: 0;
+}
+
+body {
+  background-color: #ece0c6;
+  color: #566122;
+  padding: 0;
+  margin: 0;
+}
+
+#intro, #footer, #about{
+  width:100vw;
+  z-index: 999;
+}
+
+#intro {
+  background-image: url(/links/hero-rungot.jpg);
+  height: 100vh;
+}
+
+#about{
+  width:100vw;
+  height: auto;
+  padding: 10vw;
+}#about > p {
+  font-size: 2.5rem;
+  width:100%;
+}
+
+#iframe {
+  position: fixed;
+  background-color: #ece0c6;
+  border: 3px solid #566122;
+  margin: 3%;
+  height: 94%;
+  width: 94%;
+  top: 0;
+  left: 0;
+  padding: 0 5vw 0 5vw;
+  overscroll-behavior: contain; /* Stop scrolling the parent site -----NOT WORKING */
+}
+
+.scene3D > div h2 {
+  margin-top: 0;
+  font-size: 3rem;
+}
+
+#footer {
+  height: 100vh;
+}
+
+.img { /* Filter for colorizing bw images */
+  filter: invert(32%) sepia(43%) saturate(300%) hue-rotate(30deg) brightness(98%) contrast(92%);
+  float: right;
+}
+
+.gif {
+  float: right;
+  mix-blend-mode: multiply;
+}
+
+.clip {
+  position: absolute;
+  background-repeat: no-repeat;
+}
+
+#clip-nahda {
+  transform: translate(50px,180px);
+  width: 560px;
+  height: 170px;
+  background-image: url(/links/hero-nahda.png);
+  background-size: 90%;
+  clip-path: polygon(10% 0%, 90% 0%, 100% 100%, 5% 100%);;
+}
+#clip-metsa {
+  transform: translate(570px,300px);
+  width: 480px;
+  height: 170px;
+  background-image: url(/links/hero-metsa.png);
+  background-size: 90%;
+  clip-path: polygon(5% 0%, 90% 0%, 100% 100%, 10% 100%);;
+}
+#clip-puilta {
+  transform: translate(730px,450px);
+  width: 560px;
+  height: 240px;
+  background-image: url(/links/hero-puilta.png);
+  background-size: 95%;
+  clip-path: polygon(10% 0%, 90% 0%, 100% 100%, 5% 100%);;
+}
+
+/* .link {
+  color: white;
+  margin: 0;
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 1;
+} */
+
+.linkSpanner{
+  position:absolute; 
+  width:100%;
+  height:100%;
+  top:0;
+  left: 0;
+  z-index: 1;
+}
+
+.scrolly-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10rem;
+  margin-bottom: 5rem;
+  background-color: #ece0c6;
+}
+@media screen and (min-width: 35rem) {
+  .scrolly-container {
+    flex-direction: row;
+  }
+}
+.scrolly-container > * {
+  flex: 1;
+}
+
+.scrolly-side {
+  padding: 0 2rem;
+}
+.scrolly-side > div {
+  height: 90vh;
+}
+
+.sticky {
+  align-items: center;
+  align-self: flex-start;
+  display: flex;
+  height: 10rem;
+  margin: 0;
+  width: 100%;
+  justify-content: center;
+  top: 15rem;
+  mix-blend-mode: multiply;
+  background-color: #ece0c6;
+}
+@media screen and (min-width: 35rem) {
+  .sticky {
+    position: sticky;
+  }
+}
+
+.card {
+  padding: 2rem;
+  /* padding-bottom: 20rem; */
+  background-color: #ece0c6;
+  border: 3px solid #566122;
+  height: 600px;
+  transition: 1s;
+}
+.card:hover {
+  color: #ff8a00;
+  border: 3px solid #ff8a00;
+  /* transform: none !important; */
+  /* transform-origin: center center 50px !important; */
+}
+
+.open {
+  width: 1200px !important;
+  position: absolute !important;
+  top: 5vw !important;
+  left: 5vw !important;
+  transform-style: flat;
+  transform: none !important;
+  overscroll-behavior: contain;
+}
+
+.close {
+  position: fixed;
+  top: 7vw;
+  right: 6vw;
+  background-color: transparent !important;
+  border: none;
+  color: #566122;
+  /* padding: 15px 32px; */
+  text-align: center;
+  text-decoration: none;
+  font-family: garamondt, serif;
+  font-size: 2rem;
+}
+
+.close:hover {
+  font-style: italic;
+}
+
+.hide {
+  display: none; 
+}
+
+.no-scroll {
+  height: 100%;
+  overflow: hidden;
+}
+
+.oksa {
+  background: none;
+  pointer-events:none;
+  width: 200%;
+}
+
+/* 3D SCROLLING on the z axis - Vincent Humeau */
+:root {
+  --scenePerspective: 1;
+  --scenePerspectiveOriginX: 50;
+  --scenePerspectiveOriginY: 10;
+  --itemZ: 1; /* Gap between each cards */
+  --cameraSpeed: 300; /* Where 1 is the fastest, this var is a multiplying factor of --scenePerspective and --filmZ */
+  --cameraZ: 200; /* Initial camera position */
+  --viewportHeight: 0; /* Viewport height will allow us to set the depth of our scene */
+  --viewportDisplay: none;
+}
+
+.viewport {
+  height: calc(var(--viewportHeight) * 1px);
+  background: url(/links/havut.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  /* transition: 1s; */
+}
+
+.viewport .scene3D-container {
+  position: fixed;
+  display: var(--viewportDisplay);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  -webkit-perspective: calc(var(--scenePerspective) * var(--cameraSpeed) * 1px);
+          perspective: calc(var(--scenePerspective) * var(--cameraSpeed) * 1px);
+  -webkit-perspective-origin: calc(var(--scenePerspectiveOriginX) * 1%) calc(var(--scenePerspectiveOriginY) * 1%);
+          perspective-origin: calc(var(--scenePerspectiveOriginX) * 1%) calc(var(--scenePerspectiveOriginY) * 1%);
+  will-change: perspective-origin;
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+  /* transition: 1s; */
+}
+
+.viewport .scene3D-container .scene3D {
+  position: absolute;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+  -webkit-transform: translateZ(calc(var(--cameraZ) * 1px));
+          transform: translateZ(calc(var(--cameraZ) * 1px));
+  will-change: transform;
+}
+
+.viewport .scene3D-container .scene3D > div {
+  position: absolute;
+  display: block;
+  width: 100%;
+  top: 40%;
+}
+
+@media only screen and (min-width: 600px) {
+  .viewport .scene3D-container .scene3D > div {
+    width: 45%;
+  }
+}
+
+.viewport .scene3D-container .scene3D > div:nth-child(2n) {
+  left: 0;
+}
+
+.viewport .scene3D-container .scene3D > div:nth-child(2n + 1) {
+  right: 0;
+}
+
+.viewport .scene3D-container .scene3D > div:nth-child(0) {
+  -webkit-transform: translate3D(22%, 10%, calc(var(--itemZ) * var(--cameraSpeed) * 0 * -1px));
+          transform: translate3D(22%, 10%, calc(var(--itemZ) * var(--cameraSpeed) * 0 * -1px));
+}
+
+.viewport .scene3D-container .scene3D > div:nth-child(1) {
+  -webkit-transform: translate3D(-20%, -3%, calc(var(--itemZ) * var(--cameraSpeed) * 1 * -1px));
+          transform: translate3D(-20%, -3%, calc(var(--itemZ) * var(--cameraSpeed) * 1 * -1px));
+}
+
+.viewport .scene3D-container .scene3D > div:nth-child(2) {
+  -webkit-transform: translate3D(-15%, -5%, calc(var(--itemZ) * var(--cameraSpeed) * 2 * -1px));
+          transform: translate3D(-15%, -5%, calc(var(--itemZ) * var(--cameraSpeed) * 2 * -1px));
+}
+
+.viewport .scene3D-container .scene3D > div:nth-child(3) {
+  -webkit-transform: translate3D(5%, -10%, calc(var(--itemZ) * var(--cameraSpeed) * 3 * -1px));
+          transform: translate3D(5%, -10%, calc(var(--itemZ) * var(--cameraSpeed) * 3 * -1px));
+}
+
+.viewport .scene3D-container .scene3D > div:nth-child(4) {
+  -webkit-transform: translate3D(15%, -22%, calc(var(--itemZ) * var(--cameraSpeed) * 4 * -1px));
+          transform: translate3D(15%, -22%, calc(var(--itemZ) * var(--cameraSpeed) * 4 * -1px));
+}
+
+.viewport .scene3D-container .scene3D > div:nth-child(5) {
+  -webkit-transform: translate3D(10%, -6%, calc(var(--itemZ) * var(--cameraSpeed) * 5 * -1px));
+          transform: translate3D(10%, -6%, calc(var(--itemZ) * var(--cameraSpeed) * 5 * -1px));
+}
+
+.viewport .scene3D-container .scene3D > div:nth-child(6) {
+  -webkit-transform: translate3D(8%, -16%, calc(var(--itemZ) * var(--cameraSpeed) * 6 * -1px));
+          transform: translate3D(8%, -16%, calc(var(--itemZ) * var(--cameraSpeed) * 6 * -1px));
+}
+
+.viewport .scene3D-container .scene3D > div:nth-child(7) {
+  -webkit-transform: translate3D(3%, 20%, calc(var(--itemZ) * var(--cameraSpeed) * 7 * -1px));
+          transform: translate3D(3%, 20%, calc(var(--itemZ) * var(--cameraSpeed) * 7 * -1px));
+}
+
+.viewport .scene3D-container .scene3D > div:nth-child(8) {
+  -webkit-transform: translate3D(10%, 34%, calc(var(--itemZ) * var(--cameraSpeed) * 8 * -1px));
+          transform: translate3D(10%, 34%, calc(var(--itemZ) * var(--cameraSpeed) * 8 * -1px));
+}
+
+.viewport .scene3D-container .scene3D > div:nth-child(9) {
+  -webkit-transform: translate3D(-13%, 21%, calc(var(--itemZ) * var(--cameraSpeed) * 9 * -1px));
+          transform: translate3D(-13%, 21%, calc(var(--itemZ) * var(--cameraSpeed) * 9 * -1px));
+}
+
+.viewport .scene3D-container .scene3D > div:nth-child(10) {
+  -webkit-transform: translate3D(-3%, 47%, calc(var(--itemZ) * var(--cameraSpeed) * 10 * -1px));
+          transform: translate3D(-3%, 47%, calc(var(--itemZ) * var(--cameraSpeed) * 10 * -1px));
+}
+
+.viewport .scene3D-container .scene3D > div:nth-child(11) {
+  -webkit-transform: translate3D(14%, -20%, calc(var(--itemZ) * var(--cameraSpeed) * 11 * -1px));
+          transform: translate3D(14%, -20%, calc(var(--itemZ) * var(--cameraSpeed) * 11 * -1px));
+}
+
+.viewport .scene3D-container .scene3D > div:nth-child(12) {
+  -webkit-transform: translate3D(5%, 25%, calc(var(--itemZ) * var(--cameraSpeed) * 12 * -1px));
+          transform: translate3D(5%, 25%, calc(var(--itemZ) * var(--cameraSpeed) * 12 * -1px));
+}
+
+.viewport .scene3D-container .scene3D > div:nth-child(13) {
+  -webkit-transform: translate3D(-2%, -20%, calc(var(--itemZ) * var(--cameraSpeed) * 13 * -1px));
+          transform: translate3D(-2%, -20%, calc(var(--itemZ) * var(--cameraSpeed) * 13 * -1px));
+}
+
+.viewport .scene3D-container .scene3D > div:nth-child(14) {
+  -webkit-transform: translate3D(16%, 25%, calc(var(--itemZ) * var(--cameraSpeed) * 14 * -1px));
+          transform: translate3D(16%, 25%, calc(var(--itemZ) * var(--cameraSpeed) * 14 * -1px));
+}
+
+.viewport .scene3D-container .scene3D > div:nth-child(15) {
+  -webkit-transform: translate3D(-6%, 37%, calc(var(--itemZ) * var(--cameraSpeed) * 15 * -1px));
+          transform: translate3D(-6%, 37%, calc(var(--itemZ) * var(--cameraSpeed) * 15 * -1px));
+}
+
+.viewport .scene3D-container .scene3D > div:nth-child(16) {
+  -webkit-transform: translate3D(25%, -7%, calc(var(--itemZ) * var(--cameraSpeed) * 16 * -1px));
+          transform: translate3D(25%, -7%, calc(var(--itemZ) * var(--cameraSpeed) * 16 * -1px));
+}
+
+.viewport .scene3D-container .scene3D > div:nth-child(17) {
+  -webkit-transform: translate3D(11%, -25%, calc(var(--itemZ) * var(--cameraSpeed) * 17 * -1px));
+          transform: translate3D(11%, -25%, calc(var(--itemZ) * var(--cameraSpeed) * 17 * -1px));
+}
+
+.viewport .scene3D-container .scene3D > div:nth-child(18) {
+  -webkit-transform: translate3D(-7%, -37%, calc(var(--itemZ) * var(--cameraSpeed) * 18 * -1px));
+          transform: translate3D(-7%, -37%, calc(var(--itemZ) * var(--cameraSpeed) * 18 * -1px));
+}
+
+.viewport .scene3D-container .scene3D > div:nth-child(19) {
+  -webkit-transform: translate3D(12%, 22%, calc(var(--itemZ) * var(--cameraSpeed) * 19 * -1px));
+          transform: translate3D(12%, 22%, calc(var(--itemZ) * var(--cameraSpeed) * 19 * -1px));
+}
+
+.viewport .scene3D-container .scene3D > div:nth-child(20) {
+  -webkit-transform: translate3D(21%, 32%, calc(var(--itemZ) * var(--cameraSpeed) * 20 * -1px));
+          transform: translate3D(21%, 32%, calc(var(--itemZ) * var(--cameraSpeed) * 20 * -1px));
+}
+
+.viewport .scene3D-container .scene3D > div:nth-child(21) {
+  -webkit-transform: translate3D(6%, 47%, calc(var(--itemZ) * var(--cameraSpeed) * 21 * -1px));
+          transform: translate3D(6%, 47%, calc(var(--itemZ) * var(--cameraSpeed) * 21 * -1px));
+}
+
+.viewport .scene3D-container .scene3D > div:nth-child(22) {
+  -webkit-transform: translate3D(1%, -42%, calc(var(--itemZ) * var(--cameraSpeed) * 22 * -1px));
+          transform: translate3D(1%, -42%, calc(var(--itemZ) * var(--cameraSpeed) * 22 * -1px));
+}
+
+.viewport .scene3D-container .scene3D > div:nth-child(23) {
+  -webkit-transform: translate3D(7%, -42%, calc(var(--itemZ) * var(--cameraSpeed) * 23 * -1px));
+          transform: translate3D(7%, -42%, calc(var(--itemZ) * var(--cameraSpeed) * 23 * -1px));
+}
+
+.viewport .scene3D-container .scene3D > div:nth-child(24) {
+  -webkit-transform: translate3D(-13%, 49%, calc(var(--itemZ) * var(--cameraSpeed) * 24 * -1px));
+          transform: translate3D(-13%, 49%, calc(var(--itemZ) * var(--cameraSpeed) * 24 * -1px));
+}
+
+.viewport .scene3D-container .scene3D > div:nth-child(25) {
+  -webkit-transform: translate3D(12%, 43%, calc(var(--itemZ) * var(--cameraSpeed) * 25 * -1px));
+          transform: translate3D(12%, 43%, calc(var(--itemZ) * var(--cameraSpeed) * 25 * -1px));
+}
+
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
