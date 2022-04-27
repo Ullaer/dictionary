@@ -143,13 +143,16 @@ function moveLetters(event) { //Changes perspective: moves elements according to
       (window.innerHeight / 2)) * -1;
   const newvalueX = (100 + xGap) /6
   const newvalueY = (100 + yGap) /10
+  const newvalueX2 = (100 + xGap) /10
+  const newvalueY2 = (100 + yGap) /20
   const newsize = 100 - yGap
 
   console.log(newvalueX,newvalueY)
 
-  var clips = document.getElementsByClassName("clip")
-  for(let i = 0; i < 3; i++){
-    clips[i].style.backgroundPosition=(newvalueX + "px " + newvalueY + "px")
-    // clips[i].style.backgroundSize=(newvalueY + "%")
-  }
+  var clip1 = document.getElementById("clip-nahda")
+  clip1.style.backgroundPosition=(newvalueX + "px " + newvalueY + "px")
+  var clip2 = document.getElementById("clip-metsa")
+  clip2.style.backgroundPosition=(newvalueX2 + "px " + newvalueY2 + "px")
+  var clip3 = document.getElementById("clip-puilta")
+  clip3.style.backgroundPosition=(newvalueX + "px " + newvalueY + "px")
 }
