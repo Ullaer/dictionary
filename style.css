@@ -2,29 +2,29 @@
 
 @font-face {
   font-family: garamondt;
-  src: url(/links/Garamondt-Regular.woff);
+  src: url(/assets/Garamondt-Regular.woff);
   font-style: normal;
 }
 @font-face {
   font-family: garamondt;
-  src: url(/links/Garamondt-Italic.woff);
+  src: url(/assets/Garamondt-Italic.woff);
   font-style: italic;
 }
 @font-face {
     font-family: nordvest;
-    src: url(/links/NordvestWeb-Regular.eot);
-    src: url(/links/NordvestWeb-Regular.eot?#iefix) format('embedded-opentype'),
-    	 url(/links/NordvestWeb-Regular.woff2) format('woff2'),
-         url(/links/NordvestWeb-Regular.woff) format('woff');
+    src: url(/assets/NordvestWeb-Regular.eot);
+    src: url(/assets/NordvestWeb-Regular.eot?#iefix) format('embedded-opentype'),
+    	 url(/assets/NordvestWeb-Regular.woff2) format('woff2'),
+         url(/assets/NordvestWeb-Regular.woff) format('woff');
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
     font-family: nordvest;
-    src: url(/links/NordvestWeb-RegularItalic.eot);
-    src: url(/links/NordvestWeb-RegularItalic.eot?#iefix) format('embedded-opentype'),
-    	 url(/links/NordvestWeb-RegularItalic.woff2) format('woff2'),
-         url(/links/NordvestWeb-RegularItalic.woff) format('woff');
+    src: url(/assets/NordvestWeb-RegularItalic.eot);
+    src: url(/assets/NordvestWeb-RegularItalic.eot?#iefix) format('embedded-opentype'),
+    	 url(/assets/NordvestWeb-RegularItalic.woff2) format('woff2'),
+         url(/assets/NordvestWeb-RegularItalic.woff) format('woff');
     font-weight: normal;
     font-style: italic;
 }
@@ -92,7 +92,7 @@ body {
 }
 
 #intro {
-  background-image: url(/links/hero-rungot.jpg);
+  background-image: url(/assets/hero-rungot.jpg);
   height: 100vh;
 }
 
@@ -146,7 +146,7 @@ body {
   transform: translate(50px,180px);
   width: 560px;
   height: 170px;
-  background-image: url(/links/hero-nahda.png);
+  background-image: url(/assets/hero-nahda.png);
   background-size: 90%;
   clip-path: polygon(10% 0%, 90% 0%, 100% 100%, 5% 100%);;
 }
@@ -154,7 +154,7 @@ body {
   transform: translate(570px,300px);
   width: 480px;
   height: 170px;
-  background-image: url(/links/hero-metsa.png);
+  background-image: url(/assets/hero-metsa.png);
   background-size: 90%;
   clip-path: polygon(5% 0%, 90% 0%, 100% 100%, 10% 100%);;
 }
@@ -162,7 +162,7 @@ body {
   transform: translate(730px,450px);
   width: 560px;
   height: 240px;
-  background-image: url(/links/hero-puilta.png);
+  background-image: url(/assets/hero-puilta.png);
   background-size: 95%;
   clip-path: polygon(10% 0%, 90% 0%, 100% 100%, 5% 100%);;
 }
@@ -298,7 +298,7 @@ body {
 
 .viewport {
   height: calc(var(--viewportHeight) * 1px);
-  background: url(/links/havut.jpg) no-repeat center center fixed; 
+  background: url(/assets/havut.jpg) no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
