@@ -11,14 +11,22 @@
   font-style: italic;
 }
 @font-face {
-  font-family: nordvest;
-  src: url(/links/NordvestTrial-Regular.otf);
-  font-style: normal;
+    font-family: nordvest;
+    src: url(/links/NordvestWeb-Regular.eot);
+    src: url(/links/NordvestWeb-Regular.eot?#iefix) format('embedded-opentype'),
+    	 url(/links/NordvestWeb-Regular.woff2) format('woff2'),
+         url(/links/NordvestWeb-Regular.woff) format('woff');
+    font-weight: normal;
+    font-style: normal;
 }
 @font-face {
-  font-family: nordvest;
-  src: url(/links/NordvestTrial-RegularItalic.otf);
-  font-style: italic;
+    font-family: nordvest;
+    src: url(/links/NordvestWeb-RegularItalic.eot);
+    src: url(/links/NordvestWeb-RegularItalic.eot?#iefix) format('embedded-opentype'),
+    	 url(/links/NordvestWeb-RegularItalic.woff2) format('woff2'),
+         url(/links/NordvestWeb-RegularItalic.woff) format('woff');
+    font-weight: normal;
+    font-style: italic;
 }
 
 h1 {
