@@ -26,8 +26,10 @@ function inView(id){ //The function to check if ID is in view, returns TRUE/FALS
 }
 
 document.addEventListener("DOMContentLoaded", function() {
-  window.addEventListener("mousemove", moveLetters);
   window.addEventListener("scroll", function() {
+    if(inView("intro")){
+      window.addEventListener("mousemove", moveLetters);
+    }  
     if(inView("card-viewport")){
       document.documentElement.style.setProperty("--viewportDisplay", "block");
       moveCamera();
@@ -122,7 +124,6 @@ for (var i = 0 ; i < 20; i++) { //When card is clicked, show the iframe
   })
   card[i].addEventListener("mouseover", function(){
     iframe.style.transform="translateY(10px)";
-    console.log("hover")
   })
 }
 function buttonClose(){
@@ -146,8 +147,6 @@ function moveLetters(event) { //Changes perspective: moves elements according to
   const newvalueX2 = (100 + xGap) /10
   const newvalueY2 = (100 + yGap) /20
   const newsize = 100 - yGap
-
-  console.log(newvalueX,newvalueY)
 
   var clip1 = document.getElementById("clip-nahda")
   clip1.style.backgroundPosition=(newvalueX + "px " + newvalueY + "px")

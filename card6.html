@@ -8,6 +8,32 @@
   <title>Forest</title>
   <link rel="stylesheet" href="style.css" />
   <script src="index.js"></script>
+  <script src="https://d3js.org/d3.v6.js"></script>
+  <style>
+    .viz-text {
+      font-family: nordvest, serif;
+      font-size: 0.8rem;
+      color: #747c22;
+    }
+    .viz-container {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+    @media screen and (min-width: 35rem) {
+      .viz-container {
+        flex-direction: row;
+      }
+    }
+    .viz-title {
+      flex: 1 100%;
+    }
+    .viz-column {
+      flex: 1 50%;
+    }
+  </style>
 </head>
 
 <body>
@@ -17,9 +43,224 @@
     <p class="translation">(different stages of pine's life)</p>
     <img src="assets/lakkapaa.png" alt="" width="50%" class="img">
     <p>Measured in the natural lifespan of pines, most of them are cut at 60 to 70 years old when they are about to come of age. Mänty means pine. A fully grown pine is called petäjä. At around 100 to 150 years old, the pine has reached its full height and continues growing only width from its top. It is said to have a lakkapää top. Such an old pine is called either honka, or aihki, a word derived from Sámi languages.
-    </p><p>Unlike one might imagine, you can’t always tell the age of a pine by its height or width. The yearly growth can be very modest, and a real clue might be a twisted and knobbly trunk. When a tree dies standing, it’s called a kelo.</p>
-    <img src="assets/puuston-ika.png" alt="" width="50%">
+    </p><p>Unlike one might imagine, you can’t always tell the age of a pine by its height or width. The yearly growth can be very modest, and a real clue might be a twisted and knobbly trunk. When a tree dies standing, it’s called a kelo.
+    </p><p>We have exceptional data about the forests of Finland dating back to 1750. Forests have been used intensively for centuries in Southern Finland. During the last 100 years, some recovery has happened in some of the metrics, but not in the age of trees. In Northern Finland the amount of forests used for forestry have increased, and the amount of forests with an average age over 120 years have decreased from 55% to 17%. According to professor Mikko Mönkkönen averages can hide significant changes: the forests of Southern Finland have become more homogenous. We have already lost many forests valuable to biodiversity.</p>
   </div>
+  <section class="viz-container">
+    <section class="viz-container viz-column">
+      <h3 class="viz-title">Age of forest stands in Southern Finland, %</h3>
+      <div id="age-viz1"></div>
+      <div class="legend"></div>
+    </section>
+    <section class="viz-container viz-column">
+      <h3 class="viz-title">Age of forest stands in Northern Finland, %</h3>
+      <div id="age-viz2"></div>
+      <div class="legend"></div>
+    </section>
+  </section>
+  <p class="source">
+    At the forest level, the age of the forest is typically determined by the age of the main tree species. The visualisations use data from National Forest Inventory or Finland in which the age of the forest is the tree basal area weighted average age of living trees.<br>
+    Source: Natural Resources Institute Finland
+  </p>
+
+  <script>
+    //Code from d3-graph-gallery.com
+    const margin = {top: 10, right: 30, bottom: 20, left: 30},
+    width = 460 - margin.left - margin.right,
+    height = 300 - margin.top - margin.bottom;
+    var colours = ['#abb2a8', '#68701d', '#adb357', '#c57fab', '#975290'];
+
+    // VIZ 1 //////////////////////////////////////////////////
+    // append the svg object to the body of the page
+    const svg1 = d3.select("#age-viz1")
+      .append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+      .append("g")
+        .attr("transform", `translate(${margin.left},${margin.top})`);
+
+    // Parse the Data
+    d3.csv("assets/VMI-s.csv").then ( function(data) {
+
+      // List of subgroups = header of the csv files = soil condition here
+      const subgroups = data.columns.slice(1)
+
+      // List of groups = species here = value of the first column called group -> I show them on the X axis
+      const groups = data.map(d => d.years)
+      
+      // Add X axis
+      const x = d3.scaleBand()
+          .domain(groups)
+          .range([0, width])
+          .padding([0.2])
+      svg1.append("g")
+        .attr("transform", `translate(0, ${height})`)
+        .call(d3.axisBottom(x).tickSize(0))
+        .classed("viz-text", true)
+      
+      // Add Y axis
+      const y = d3.scaleLinear()
+        .domain([0, 100])
+        .range([ height, 0 ]);
+      svg1.append("g")
+        .call(d3.axisLeft(y))
+        .classed("viz-text", true)
+        .call(g => g.select(".domain")
+          .remove())
+        .call(g => g.select(".tick:last-of-type line")
+          .attr("x1", width));
+
+      // color palette = one color per subgroup
+      const color = d3.scaleOrdinal()
+        .domain(subgroups)
+        .range(colours)
+
+      // Parse data
+      // dataParsed = []
+      data.forEach(function(d){
+        for (i in subgroups){ name=subgroups[i] ; d[name] = +d[name] *100}
+      })
+
+      //stack the data? --> stack per subgroup
+      const stackedData = d3.stack()
+        .keys(subgroups)
+        (data)
+            
+      // Show the bars
+      svg1.append("g")
+        .selectAll("g")
+        // Enter in the stack data = loop key per key = group per group
+        .data(stackedData)
+        .join("g")
+          .attr("fill", d => color(d.key))
+          .selectAll("rect")
+          // enter a second time = loop subgroup per subgroup to add all rectangles
+          .data(d => d)
+          .join("rect")
+            .attr("x", d => x(d.data.years))
+            .attr("y", d => y(d[1]))
+            .attr("height", d => y(d[0]) - y(d[1]))
+            .attr("width",x.bandwidth())
+
+    //////////////////////////////////////////////////    
+    //Legend (http://bl.ocks.org/nbremer/61cd485e399b6a71d5fb2b1072fbc6c1)
+    var	legendMargin = {left: 5, top: 10, right: 5, bottom: 10},
+		legendWidth = 120,
+		legendHeight = 120;
+    
+    var svgLegend = d3.selectAll(".legend").append("svg")
+        .attr("width", (legendWidth + legendMargin.left + legendMargin.right))
+        .attr("height", (legendHeight + legendMargin.top + legendMargin.bottom));			
+
+    var legendWrapper = svgLegend.append("g").attr("class", "legendWrapper")
+        .attr("transform", "translate(" + legendMargin.left + "," + legendMargin.top +")");
+
+    var radiusLegend = 5, //dimensions of the colored square
+        rowHeight = 20, //height of a row in the legend
+        maxWidth = 144, //widht of each row
+        index = d3.local();// Store index in local variable.
+    
+    //Create container per rect/text pair  
+    var legend = legendWrapper.selectAll('.legendSquare')  	
+        .data(color.range())                              
+        .join('g')
+        .attr('class', 'legendSquare') 
+        .attr("transform", function(d,i) { 
+          var moveY = 100-(i*rowHeight)
+          return "translate(0," + moveY + ")"; })
+
+    //Non visible white rectangle behind square and text for better hover
+    legend.append('circle')                                     
+        .attr('width', maxWidth) 
+        .attr('height', rowHeight) 			  		  
+        .style('fill', "white");
+    //Append small squares to Legend
+    legend.append('circle')                                     
+        .attr('r', radiusLegend) 
+        .style('fill', function(d) {return d;});                                 
+    //Append text to Legend
+    legend.append('text')                                     
+        .attr('transform', 'translate(10,' + radiusLegend + ')')
+        .attr("class", "viz-text")
+        .style("font-size", "10px")
+        .attr("dy", "-.1em")		  
+        .text(function(d,i) { 
+            return color.domain()[i]; });
+    })
+
+    // VIZ 2 //////////////////////////////////////////////////
+    // append the svg object to the body of the page
+    const svg2 = d3.select("#age-viz2")
+      .append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+      .append("g")
+        .attr("transform", `translate(${margin.left},${margin.top})`);
+
+    // Parse the Data
+    d3.csv("assets/VMI-n.csv").then ( function(data) {
+
+      // List of subgroups = header of the csv files = soil condition here
+      const subgroups = data.columns.slice(1)
+
+      // List of groups = species here = value of the first column called group -> I show them on the X axis
+      const groups = data.map(d => d.years)
+      
+      // Add X axis
+      const x = d3.scaleBand()
+          .domain(groups)
+          .range([0, width])
+          .padding([0.2])
+      svg2.append("g")
+        .attr("transform", `translate(0, ${height})`)
+        .call(d3.axisBottom(x).tickSize(0))
+        .classed("viz-text", true);
+      
+      // Add Y axis
+      const y = d3.scaleLinear()
+        .domain([0, 100])
+        .range([ height, 0 ]);
+      svg2.append("g")
+        .call(d3.axisLeft(y))
+        .classed("viz-text", true)
+        .call(g => g.select(".domain")
+          .remove())
+        .call(g => g.select(".tick:last-of-type line")
+          .attr("x1", width));
+
+      // color palette = one color per subgroup
+      const color = d3.scaleOrdinal()
+        .domain(subgroups)
+        .range(colours)
+
+      // Parse data
+      // dataParsed = []
+      data.forEach(function(d){
+        for (i in subgroups){ name=subgroups[i] ; d[name] = +d[name] *100}
+      })
+
+      //stack the data? --> stack per subgroup
+      const stackedData = d3.stack()
+        .keys(subgroups)
+        (data)
+            
+      // Show the bars
+      svg2.append("g")
+        .selectAll("g")
+        // Enter in the stack data = loop key per key = group per group
+        .data(stackedData)
+        .join("g")
+          .attr("fill", d => color(d.key))
+          .selectAll("rect")
+          // enter a second time = loop subgroup per subgroup to add all rectangles
+          .data(d => d)
+          .join("rect")
+            .attr("x", d => x(d.data.years))
+            .attr("y", d => y(d[1]))
+            .attr("height", d => y(d[0]) - y(d[1]))
+            .attr("width",x.bandwidth())
+    })
+  </script>
 </body>
 
 </html>
