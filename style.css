@@ -103,11 +103,11 @@ body {
 /* ----------------INTRO------------------ */
 
 #intro {
-  height: 100vh;
   overflow: hidden;
+  background-color: #ece0c6;
 }#intro img {
   filter: invert(32%) sepia(43%) saturate(300%) hue-rotate(30deg) brightness(98%) contrast(92%);
-  width: 1920px;
+  width: 100vw;
 }
 
 .clip {
@@ -163,12 +163,22 @@ body {
 }
 
 /* ----------------3D / CONTENT------------------ */
+#card-viewport > img {
+  filter: invert(32%) sepia(43%) saturate(300%) hue-rotate(30deg) brightness(98%) contrast(92%);
+  position: fixed;
+  display: block !important;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  z-index: -1;
+}
+
 #iframe {
   position: fixed;
   background-color: #ece0c6;
   border: 3px solid #747c22;
-  margin: 3%;
-  height: 94%;
+  margin: 3% 3% 0 3%;
+  height: 97%;
   width: 94%;
   top: 0;
   left: 0;
@@ -202,8 +212,6 @@ body {
   color: #ff8a00;
   border: 3px solid #ff8a00;
   cursor: pointer;
-  /* transform: none !important; */
-  /* transform-origin: center center 50px !important; */
 }
 
 .open {
@@ -243,9 +251,10 @@ body {
 }
 
 .oksa {
-  background: none;
+  /* background: none; */
   pointer-events:none;
   width: 200%;
+  filter: invert(32%) sepia(43%) saturate(300%) hue-rotate(30deg) brightness(98%) contrast(92%);
 }
 
 .linkSpanner{
@@ -255,6 +264,10 @@ body {
   top:0;
   left: 0;
   z-index: 1;
+}
+
+.iframe-body {
+  padding-bottom: 5%;
 }
 
 /* ----------------SCROLLYTELLING----------------- */
@@ -281,6 +294,11 @@ body {
 .scrolly-side > div {
   height: 90vh;
 }
+/* .scrolly-last {
+  position: sticky !important;
+  top: 15rem;
+  height: auto !important;
+} */
 
 .sticky {
   align-items: center;
@@ -304,6 +322,46 @@ body {
 
 #footer {
   height: 100vh;
+  background-color: #c5ddf1;
+}
+#footer p {
+  font-size: 1.2rem;
+}
+#footer h3 {
+  font-size: 1.2rem;
+  text-transform: none;
+  letter-spacing: normal;
+  padding-bottom: 0.5rem;
+  margin-block-start: 2rem;
+  margin-block-end: 0.2rem;
+}
+.container {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  /* flex-wrap: wrap; */
+  align-items: flex-start;
+  margin: 2rem 5rem;
+  gap: 5%;
+}
+@media screen and (min-width: 35rem) {
+  .container {
+    flex-direction: row;
+  }
+}
+.column {
+  flex: 1;
+}
+.project {
+  padding-left: 10%;
+}
+.footer-link {
+  position: relative;
+  border-bottom: 2px solid #747c22;
+}.footer-link:hover {
+  color: #ff8a00;
+  border-color: #ff8a00;
+  cursor: pointer;
 }
 
 /* ---------3D SCROLLING on the z axis - Vincent Humeau ------------*/
@@ -320,12 +378,6 @@ body {
 
 .viewport {
   height: calc(var(--viewportHeight) * 1px);
-  background: url(assets/havut.jpg) no-repeat center center fixed; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  /* transition: 1s; */
 }
 
 .viewport .scene3D-container {
@@ -342,7 +394,6 @@ body {
   will-change: perspective-origin;
   -webkit-transform: translate3d(0, 0, 0);
           transform: translate3d(0, 0, 0);
-  /* transition: 1s; */
 }
 
 .viewport .scene3D-container .scene3D {

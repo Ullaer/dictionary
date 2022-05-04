@@ -1,4 +1,4 @@
-let cards = [];
+let cards = 13;
 
 const perspectiveOrigin = {
   x: parseFloat(
@@ -16,7 +16,7 @@ const perspectiveOrigin = {
 
 function inView(id){ //The function to check if ID is in view, returns TRUE/FALSE
   var object = document.getElementById(id);
-  var y = object.getBoundingClientRect().y
+  var y = object.getBoundingClientRect().y;
   //console.log(object.getBoundingClientRect().y, window.innerHeight)
   if( y < 0 ){
       return true;
@@ -33,6 +33,7 @@ document.addEventListener("DOMContentLoaded", function() {
     if(inView("card-viewport")){
       document.documentElement.style.setProperty("--viewportDisplay", "block");
       moveCamera();
+      changeBg();
     }  
     else{
       document.documentElement.style.setProperty("--viewportDisplay", "none");
@@ -48,7 +49,7 @@ function moveCamera() {
 }
 
 function setSceneHeight() {
-  const numberOfItems = 20 //cards.length;
+  const numberOfItems = cards + 6;
   const itemZ = parseFloat(
     getComputedStyle(document.documentElement).getPropertyValue("--itemZ")
   );
@@ -93,39 +94,45 @@ function moveCameraAngle(event) { //Changes perspective: moves elements accordin
   );
 }
 
-//Iframe
-// var card = document.getElementsByClassName("card");
-// var iframe = document.getElementById("iframe");
-// for (var i = 0 ; i < 20; i++) { //When card is clicked, show the iframe
-//   card[i].addEventListener("click", function(){
-//     this.classList.toggle('open');
-//     document.body.classList.toggle('no-scroll');
-//     document.documentElement.style.setProperty('--scenePerspective', 100);
-//     // iframe.classList.toggle('hide')
-//   })
+//Open and close iframe 1
+// function iframeOpen() {
+  var card = document.getElementsByClassName("card");
+  var iframe = document.getElementById("iframe");
+  var button = document.getElementById("buttonClose");
+  var mainBody = document.getElementById("main-body");
+  for (var i = 0 ; i < cards; i++) { //When card is clicked, show the iframe
+    card[i].addEventListener("click", function(){
+      console.log("click",i)
+      iframe.classList.toggle('hide');
+      button.classList.toggle('hide');
+      mainBody.classList.toggle('no-scroll');
+    })
+  }
 // }
-
-// function cardClose(){
-//   console.log("x");
-//   document.documentElement.style.setProperty('--scenePerspective', 1);
-//   moveCamera();
-//   setSceneHeight();
-// }
-
-var card = document.getElementsByClassName("card");
-var iframe = document.getElementById("iframe");
+function buttonClose(){
+  var d = window.parent.document;
+  var iframe = d.getElementById('iframe');
+  iframe.classList.toggle('hide');
+  button.classList.toggle('hide');
+  d.body.classList.toggle('no-scroll');
+}
+//Open and close iframe 2
+var footerLink = document.getElementsByClassName("footer-link");
+// console.log(footerLink)
+var iframe2 = document.getElementById("iframe2");
 var button = document.getElementById("buttonClose");
 var mainBody = document.getElementById("main-body");
-for (var i = 0 ; i < 20; i++) { //When card is clicked, show the iframe
-  card[i].addEventListener("click", function(){
-    iframe.classList.toggle('hide');
-    button.classList.toggle('hide');
-    mainBody.classList.toggle('no-scroll');
-  })
-  card[i].addEventListener("mouseover", function(){
-    iframe.style.transform="translateY(10px)";
-  })
-}
+// if(inView("card-viewport")){
+//   console.log("3d")
+//   for (var i = 0 ; i < 20; i++) { //When card is clicked, show the iframe
+//     footerLink[i].addEventListener("click", function(){
+//       console.log("klik")
+//       iframe2.classList.toggle('hide');
+//       button.classList.toggle('hide');
+//       mainBody.classList.toggle('no-scroll');
+//     })
+//   }
+// }
 function buttonClose(){
   var d = window.parent.document;
   var iframe = d.getElementById('iframe');
@@ -154,4 +161,15 @@ function moveLetters(event) { //Changes perspective: moves elements according to
   clip2.style.backgroundPosition=(newvalueX2 + "px " + newvalueY2 + "px")
   var clip3 = document.getElementById("clip-puilta")
   clip3.style.backgroundPosition=(newvalueX + "px " + newvalueY + "px")
+}
+
+//Changing bg colour
+function changeBg() {
+  var height = parseFloat(
+    getComputedStyle(document.documentElement).getPropertyValue("--viewportHeight")
+  );
+  var bgScale = chroma.scale(['#ece0c6', '#c5ddf1'])
+    .domain([height/4, height]);
+  var mainBody = document.getElementById("main-body")
+  mainBody.style.backgroundColor = bgScale(window.pageYOffset);
 }

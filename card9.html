@@ -8,18 +8,187 @@
   <title>Forest</title>
   <link rel="stylesheet" href="style.css" />
   <script src="index.js"></script>
+  <script src="https://d3js.org/d3.v6.js"></script>
+  <style>
+    .viz-text {
+      font-family: nordvest, serif;
+      font-size: 0.8rem;
+      color: #747c22;
+    }
+    .viz-container {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      margin-bottom: 2rem;
+      gap: 3%;
+    }
+    @media screen and (min-width: 35rem) {
+      .viz-container {
+        flex-direction: row;
+      }
+    }
+    .viz-title {
+      flex: 1 100%;
+    }
+    /* .viz-column {
+      flex: 1 33%;
+    } */
+  </style>
 </head>
 
-<body>
+<body class="iframe-body">
   <div>
     <p class="theme">nature</p>
     <h2>Commensuration</h2>
     <p class="translation">yhteismitallistaminen</p>
     <img src="assets/commensuration.png" alt="" width="50%" class="img">
-    <p>At the heart of the debate related to our forests lies the fact that the forest resources are limited and are subject to competing needs. This generates conflicts in politics and society. Different interests need to be coordinated and the discourse made public and accessible.</p>
-    <p>(text to be updated + chart of 3 strategies)</p>
-    <img src="assets/strategiat.png" alt="" width="50%">
+    <p>At the heart of the debate related to our forests lies the fact that the forest resources are limited and are subject to competing needs. We expect forests to supply us raw materials, sequester CO2, safeguard biodiversity and adapt to the climate crisis. This generates conflicts in politics and society. 
+    </p><p>To be able to address this issue commensurating is needed. To make something commensurate means it can be measured by a common standard. A group of researchers studied three different strategies concerning the forests of Finland. They wanted to see whether they are compatible, so they estimated what kind of forest use is needed for each.
+    </p>
+    <section class="viz-container">
+      <section class="viz-title">
+        <h3>Management solutions for three policy scenarios</h3>
+        <p class="source">% share of regime class</p>
+      </section>
+      <section class="viz-column">
+        <div id="strategies-viz"></div>
+      </section>
+      <section class="viz-column">
+        <div id="legend"></div>
+      </section>
+      <section class="viz-column">
+        <p class="source">The national forest strategy</p>
+        <p class="source">The biodiversity strategy</p>
+        <p class="source">The bioeconomy strategy</p>
+      </section>
+    </section>
+    <p>It turned out that they are conflicting. Not one of them can be reached with our current forest use. However well we calculate possible solutions and models, what it all comes down to in the end is values and choices. Do we think biodiversity is valuable? How much of it do we want to save? Do we only save what’s beneficial for humanity’s wellbeing, or do we have a duty to do more? A dialogue is needed, and after that political coordination is the key.
+    </p>      
   </div>
+
+  <script>
+    //Code from d3-graph-gallery.com
+    const margin = {top: 10, right: 30, bottom: 20, left: 30},
+    width = 460 - margin.left - margin.right,
+    height = 300 - margin.top - margin.bottom;
+    var colours = ['#68701d','#adb357','#fbce52','#c57fab','#975290','#72376c'];
+
+    // append the svg object to the body of the page
+    const svg1 = d3.select("#strategies-viz")
+      .append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+      .append("g")
+        .attr("transform", `translate(${margin.left},${margin.top})`);
+
+    // Parse the Data
+    d3.csv("assets/strategies.csv").then ( function(data) {
+
+      // List of subgroups = header of the csv files = soil condition here
+      const subgroups = data.columns.slice(1)
+
+      // List of groups = species here = value of the first column called group -> I show them on the X axis
+      const groups = data.map(d => d.strategy)
+      
+      // Add X axis
+      const x = d3.scaleBand()
+          .domain(groups)
+          .range([0, width])
+          .padding([0.2])
+      svg1.append("g")
+        .attr("transform", `translate(0, ${height})`)
+        .call(d3.axisBottom(x).tickSize(0))
+        .classed("viz-text", true)
+      
+      // Add Y axis
+      const y = d3.scaleLinear()
+        .domain([0, 100])
+        .range([ height, 0 ]);
+      svg1.append("g")
+        .call(d3.axisLeft(y))
+        .classed("viz-text", true)
+        .call(g => g.select(".domain")
+          .remove())
+        .call(g => g.select(".tick:last-of-type line")
+          .attr("x1", width));
+
+      // Color palette
+      const color = d3.scaleOrdinal()
+        .domain(subgroups)
+        .range(colours)
+
+      // Parse data
+      data.forEach(function(d){
+        for (i in subgroups){ name=subgroups[i] ; d[name] = +d[name]}
+      })
+
+      // Stack per subgroup
+      const stackedData = d3.stack()
+        .keys(subgroups)
+        (data)
+            
+      // Show the bars
+      svg1.append("g")
+        .selectAll("g")
+        // Enter in the stack data = loop key per key = group per group
+        .data(stackedData)
+        .join("g")
+          .attr("fill", d => color(d.key))
+          .selectAll("rect")
+          // enter a second time = loop subgroup per subgroup to add all rectangles
+          .data(d => d)
+          .join("rect")
+            .attr("x", d => x(d.data.strategy))
+            .attr("y", d => y(d[1]))
+            .attr("height", d => y(d[0]) - y(d[1]))
+            .attr("width",x.bandwidth())
+
+      //////////////////////////////////////////////////    
+      //Legend (http://bl.ocks.org/nbremer/61cd485e399b6a71d5fb2b1072fbc6c1)
+      var	legendMargin = {left: 5, top: 10, right: 5, bottom: 10},
+      legendWidth = 120,
+      legendHeight = 120;
+      
+      var svgLegend = d3.select("#legend").append("svg")
+          .attr("width", (legendWidth + legendMargin.left + legendMargin.right))
+          .attr("height", (legendHeight + legendMargin.top + legendMargin.bottom));			
+
+      var legendWrapper = svgLegend.append("g").attr("class", "legendWrapper")
+          .attr("transform", "translate(" + legendMargin.left + "," + legendMargin.top +")");
+
+      var radiusLegend = 5, //dimensions of the colored square
+          rowHeight = 20, //height of a row in the legend
+          maxWidth = 144, //widht of each row
+          index = d3.local();// Store index in local variable.
+      
+      //Create container per rect/text pair  
+      var legend = legendWrapper.selectAll('.legendSquare')  	
+          .data(color.range())                              
+          .join('g')
+          .attr('class', 'legendSquare') 
+          .attr("transform", function(d,i) { 
+            var moveY = 100-(i*rowHeight)
+            return "translate(0," + moveY + ")"; })
+
+      //Non visible white rectangle behind square and text for better hover
+      legend.append('circle')                                     
+          .attr('width', maxWidth) 
+          .attr('height', rowHeight) 			  		  
+          .style('fill', "white");
+      //Append small squares to Legend
+      legend.append('circle')                                     
+          .attr('r', radiusLegend) 
+          .style('fill', function(d) {return d;});                                 
+      //Append text to Legend
+      legend.append('text')                                     
+          .attr('transform', 'translate(10,' + radiusLegend + ')')
+          .attr("dy", "-.1em")		  
+          .text(function(d,i) { 
+            return color.domain()[i]; })
+          .classed("viz-text", true)
+    })
+  </script>
 </body>
 
 </html>

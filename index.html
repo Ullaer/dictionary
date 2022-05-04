@@ -7,6 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <title>Dictionary</title>
   <link rel="stylesheet" href="style.css"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/chroma-js/2.4.2/chroma.min.js"></script>
 </head>
 
 <body id="main-body">
@@ -23,16 +24,17 @@
       <p class="theme">: to not understand or appreciate a larger situation, problem, etc., because one is considering only a few parts of it</p>
     </div>
     <div class="col-right">
-      <p>Finnish people are metsäkansa, the forest people. Forests are property, green gold. In Finnish folklore forests were places of vital resources but also mystery. We live in the forests, from the forests and go into the forest from the outside.
-      </p><p>What do words related to forest tell us about our relationship with nature? This dictionary looks into how language from different spheres of life contribute to our understanding of a forest. Dive into this forest of words below. Is there something still missing?
+      <p>Finnish people are metsäkansa, the forest people. Forests are property, green gold. In Finnish folklore forests were sources of vital resources but also mystery. We live in the forests, from the forests and go into the forest from the outside.
+      </p><p>What do words related to forest tell us about our relationship with nature? This dictionary looks into how language from different spheres of life contribute to our understanding of a forest. Dive into a gathering of words below. Is there something still missing?
       </p>
     </div>
   </div>
   <div class="viewport" id="card-viewport">
+    <img src="assets/havut2.png" alt="">
     <div class="scene3D-container ">
       <div class="scene3D">
         <div class="card">
-          <h2>Metsä</h2><p class="translation">forest</p><a href="card.html" target="iframe_target"><span class="linkSpanner"></span></a></div>
+          <h2>Metsä</h2><p class="translation">forest</p><a href="card1.html" target="iframe_target"><span class="linkSpanner"></span></a></div>
         <div class="oksa"><img src="assets/oksa.png" alt="" width="100%"></div>
         <div class="card">
           <h2>Carbon storage, carbon sink</h2><p class="translation">hiilivarasto, hiilinielu</p><a href="card2.html" target="iframe_target"><span class="linkSpanner"></span></a></div>
@@ -52,26 +54,57 @@
         <div class="card">
           <h2>Mänty, petäjä, honka, aihki, lakkapää, kelo</h2><p class="translation">(different stages of pine's life)</p><a href="card6.html" target="iframe_target"><span class="linkSpanner"></span></a></div>
         <div class="card">
-          <h2>Metsänhoito</h2><p class="translation">forest management</p><a href="card7.html" target="iframe_target"><span class="linkSpanner"></span></a></div>
+          <h2>Metsänhoito</h2><p class="translation">forest improvement</p><a href="card7.html" target="iframe_target"><span class="linkSpanner"></span></a></div>
         <div class="card">
           <h2>Ecosystem services</h2><p class="translation">ekosysteemipalvelut</p><a href="card8.html" target="iframe_target"><span class="linkSpanner"></span></a></div>
         <div class="card">
             <h2>Commensuration</h2><p class="translation">yhteismitallistaminen</p><a href="card9.html" target="iframe_target"><span class="linkSpanner"></span></a></div>
         <div class="oksa"><img src="assets/oksa.png" alt="" width="100%"></div>
         <div class="card">
-          <h2>Biodiversity</h2><p class="translation">(coming)</p><a href="-" target="iframe_target"><span class="linkSpanner"></span></a></div>
+          <h2>Shame, guilt</h2><p class="translation">häpeä, syyllisyys</p><a href="card12.html" target="iframe_target"><span class="linkSpanner"></span></a></div>
         <div class="card">
-          <h2>Bioeconomy</h2><p class="translation">(coming)</p><a href="-" target="iframe_target"><span class="linkSpanner"></span></a></div>
-        <div class="card">
-          <h2>Planetarian citizenship</h2><p class="translation">(coming)</p><a href="-" target="iframe_target"><span class="linkSpanner"></span></a></div>
+          <h2>Planetary citizenship</h2><p class="translation">planetaarinen kansalaisuus</p><a href="card13.html" target="iframe_target"><span class="linkSpanner"></span></a></div>
       </div>
     </div>
-    <iframe src="/card.html" name="iframe_target" id="iframe" class="hide" title="Title"></iframe>
+    <iframe src="/card1.html" name="iframe_target" id="iframe" class="hide" title="Title"></iframe>
     <button type="button" id="buttonClose" class="close hide" onclick="buttonClose()">X</button>
   </div>
   
   <div id="footer">
-    <p>(A site map with all the links here)</p>
+    <iframe src="/card1.html" name="iframe_target2" id="iframe2" class="hide" title="Title"></iframe>
+    <button type="button" id="buttonClose" class="close hide" onclick="buttonClose()">X</button>
+    <section class="container">
+      <section class="column">
+        <h2 class="theme">nature</h2>
+        <div class="footer-link"><h3>Natural forest</h3><a href="card13.html" target="iframe_target2"><span class="linkSpanner"></span></a>
+        </div>
+        <h3>Tuulenkaato</h3>
+        <h3>Biodiversity</h3>
+        <h3>Mänty, petäjä, honka, aihki, lakkapää, kelo</h3>
+      </section>
+      <section class="column">
+          <h2 class="theme">economy</h2>
+          <h3>Sustainable development</h3>
+          <h3>Harsinta</h3>
+          <h3>Metsänhoito</h3>
+          <h3>Ecosystem services</h3>
+      </section>
+      <section class="column">
+        <h2 class="theme">relationship</h2>
+        <h3>Metsä</h3>
+        <h3>Love</h3>
+        <h3>Commensuration</h3>
+        <h3>Shame, guilt</h3>
+        <h3>Planetary citizenship</h3>
+      </section>
+      <section class="column project">
+        <h2 class="theme">The project</h2>
+        <p>In times of environmental crises it’s essential to take a look at our relationship with nature. What is our current understanding of nature, and our part in it? This dictionary explores the topic by compiling words connected to forests from different spheres of life.
+        </p><p>This dictionary is not meant to be exhaustive, but rather shed light on the fragmented view we have of nature. I have chosen these words because they seem to be either misunderstood, fuzzy in their meaning, used in conflicting ways or disregarded. The project is meant to be food for thought, and hopefully provide tools to join the much needed discussion. I think the current discussion is missing a point-of view that is less anthropocentric and more posthumanistic. 
+        </p><p>I myself am a visual communication designer and not an expert on any of these topics. I'd love to receive further suggestions to the dictionary or just general feedback! The project was made during the course ‘Information: Studio’ in the Visual Communication Design programme at Aalto University. Ulla Eronen, 2022.
+        </p>
+      </section>
+    </section>
   </div>
   <script src="index.js"></script>
 </body>
