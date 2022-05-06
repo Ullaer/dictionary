@@ -10,6 +10,9 @@
   --viewportDisplay: none;
 }
 
+.html {
+  font-size: 20px;
+
 h1 {
   font-family: nordvest, sans-serif;
   font-size: 6rem;
