@@ -1,4 +1,5 @@
 :root {
+  --fontSize: 20px;
   --scenePerspective: 1;
   --scenePerspectiveOriginX: 50;
   --scenePerspectiveOriginY: 10;
