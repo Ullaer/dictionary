@@ -134,6 +134,8 @@ body {
 }#about p {
   margin-top: 0;
   width: 100%;
+}#about theme {
+  width: 50%;
 }
 .container-about {
   display: flex;
