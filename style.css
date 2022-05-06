@@ -88,6 +88,8 @@ body {
 #intro {
   overflow: hidden;
   background-color: #ece0c6;
+  top: -40px;
+  position: relative;
 }#intro img {
   filter: invert(32%) sepia(43%) saturate(300%) hue-rotate(30deg) brightness(120%) contrast(92%);
   width: 100vw;
@@ -129,12 +131,14 @@ body {
   height: 100%;
   padding: 4vw 5vw 5vw 5vw;
   background-color: #ece0c6;
+  top: -40px;
+  position: relative;
 }#about h1 {
   font-size: 4rem !important;
 }#about p {
   margin-top: 0;
   width: 100%;
-}#about theme {
+}#about .theme {
   width: 50%;
 }
 .container-about {
