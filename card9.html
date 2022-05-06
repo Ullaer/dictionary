@@ -39,39 +39,44 @@
 
 <body class="iframe-body">
   <div>
-    <p class="theme">nature</p>
+    <p class="theme">relationship</p>
     <h2>Commensuration</h2>
     <p class="translation">yhteismitallistaminen</p>
-    <img src="assets/commensuration.png" alt="" width="50%" class="img">
-    <p>At the heart of the debate related to our forests lies the fact that the forest resources are limited and are subject to competing needs. We expect forests to supply us raw materials, sequester CO2, safeguard biodiversity and adapt to the climate crisis. This generates conflicts in politics and society. 
-    </p><p>To be able to address this issue commensurating is needed. To make something commensurate means it can be measured by a common standard. A group of researchers studied three different strategies concerning the forests of Finland. They wanted to see whether they are compatible, so they estimated what kind of forest use is needed for each.
+    <img src="assets/commensuration.png" alt="" width="40%" class="img">
+    <p>At the heart of the debate related to our forests lies the fact that the forest resources are limited and are subject to competing needs. We expect forests to supply us raw materials, sequester CO<sub>2</sub>, safeguard biodiversity and adapt to the warming climate. This generates conflicts and misconceptions in politics and society. 
+    </p><p>To be able to address this issue commensurating is needed. To make something commensurate means it can be measured by a common standard. A group of researchers studied three overlapping strategies concerning the forests of Finland. They wanted to see whether they are compatible, so they estimated what kind of forest use is needed for each.
     </p>
     <section class="viz-container">
       <section class="viz-title">
         <h3>Management solutions for three policy scenarios</h3>
-        <p class="source">% share of regime class</p>
+        <p class="source">% share of forest management type</p>
       </section>
       <section class="viz-column">
         <div id="strategies-viz"></div>
       </section>
       <section class="viz-column">
         <div id="legend"></div>
-      </section>
-      <section class="viz-column">
-        <p class="source">The national forest strategy</p>
-        <p class="source">The biodiversity strategy</p>
-        <p class="source">The bioeconomy strategy</p>
+      <!-- </section>
+      <section class="viz-column"> -->
+        <p class="source">The Finnish national forest strategy from 2019 specifies the main objectives for forest-based business and activities until 2025.</p>
+        <p class="source">The biodiversity strategy from 2012 aims to ensure a favourable status of biodiversity and ecosystem services by 2050.</p>
+        <p class="source">The bioeconomy strategy from 2014 aims to simultaneously mobilise the resources for bioeconomy purposes and safeguard biodiversity.</p>
+        <p class="source">Biggest conflicts lie between economic growth and biodiversity conservation. There were conflicting objectives even within individual policy strategies.</p>
       </section>
     </section>
-    <p>It turned out that they are conflicting. Not one of them can be reached with our current forest use. However well we calculate possible solutions and models, what it all comes down to in the end is values and choices. Do we think biodiversity is valuable? How much of it do we want to save? Do we only save what’s beneficial for humanity’s wellbeing, or do we have a duty to do more? A dialogue is needed, and after that political coordination is the key.
+    <p>It turned out that they are conflicting. Not one of them can be reached with our current forest use. However well we calculate possible solutions and models, what it all comes down to in the end is values and choices. Do we think biodiversity is valuable? How much of it do we want to save? Do we only save what’s beneficial for humanity’s wellbeing, or do we have a duty to do more? First, a dialogue is needed, and political coordination is the key for implementation.
     </p>      
+  </div>
+  <div class="article-end">
+    <p class="source">Sources:</p>
+    <a href="https://www.sciencedirect.com/science/article/pii/S1389934122000016?via%3Dihub#f0020" target="_blank">"Sectoral policies cause incoherence in forest management and ecosystem service provisioning"</a>
   </div>
 
   <script>
     //Code from d3-graph-gallery.com
     const margin = {top: 10, right: 30, bottom: 20, left: 30},
     width = 460 - margin.left - margin.right,
-    height = 300 - margin.top - margin.bottom;
+    height = 350 - margin.top - margin.bottom;
     var colours = ['#68701d','#adb357','#fbce52','#c57fab','#975290','#72376c'];
 
     // append the svg object to the body of the page
@@ -118,11 +123,6 @@
         .domain(subgroups)
         .range(colours)
 
-      // Parse data
-      data.forEach(function(d){
-        for (i in subgroups){ name=subgroups[i] ; d[name] = +d[name]}
-      })
-
       // Stack per subgroup
       const stackedData = d3.stack()
         .keys(subgroups)
@@ -146,8 +146,8 @@
 
       //////////////////////////////////////////////////    
       //Legend (http://bl.ocks.org/nbremer/61cd485e399b6a71d5fb2b1072fbc6c1)
-      var	legendMargin = {left: 5, top: 10, right: 5, bottom: 10},
-      legendWidth = 120,
+      var	legendMargin = {left: 5, top: 20, right: 5, bottom: 10},
+      legendWidth = 320,
       legendHeight = 120;
       
       var svgLegend = d3.select("#legend").append("svg")
@@ -181,12 +181,14 @@
           .attr('r', radiusLegend) 
           .style('fill', function(d) {return d;});                                 
       //Append text to Legend
+      var legendText = ["setting aside (preserved)","continuous cover forestry","adaption to climate change regimes (more broadleave trees)","business as usual with longer rotation length","business as usual","business as usual with shortened rotation length",]
       legend.append('text')                                     
           .attr('transform', 'translate(10,' + radiusLegend + ')')
           .attr("dy", "-.1em")		  
           .text(function(d,i) { 
-            return color.domain()[i]; })
+            return legendText[i]; })
           .classed("viz-text", true)
+          .style('fill', "#747c22");
     })
   </script>
 </body>

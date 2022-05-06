@@ -1,30 +1,12 @@
-@font-face {
-  font-family: garamondt;
-  src: url(assets/Garamondt-Regular.woff);
-  font-style: normal;
-}
-@font-face {
-  font-family: garamondt;
-  src: url(assets/Garamondt-Italic.woff);
-  font-style: italic;
-}
-@font-face {
-    font-family: nordvest;
-    src: url(assets/NordvestWeb-Regular.eot);
-    src: url(assets/NordvestWeb-Regular.eot?#iefix) format('embedded-opentype'),
-    	 url(assets/NordvestWeb-Regular.woff2) format('woff2'),
-         url(assets/NordvestWeb-Regular.woff) format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
-@font-face {
-    font-family: nordvest;
-    src: url(assets/NordvestWeb-RegularItalic.eot);
-    src: url(assets/NordvestWeb-RegularItalic.eot?#iefix) format('embedded-opentype'),
-    	 url(assets/NordvestWeb-RegularItalic.woff2) format('woff2'),
-         url(assets/NordvestWeb-RegularItalic.woff) format('woff');
-    font-weight: normal;
-    font-style: italic;
+:root {
+  --scenePerspective: 1;
+  --scenePerspectiveOriginX: 50;
+  --scenePerspectiveOriginY: 10;
+  --itemZ: 1; /* Gap between each cards */
+  --cameraSpeed: 300; /* Where 1 is the fastest, this var is a multiplying factor of --scenePerspective and --filmZ */
+  --cameraZ: 200; /* Initial camera position */
+  --viewportHeight: 0; /* Viewport height will allow us to set the depth of our scene */
+  --viewportDisplay: none;
 }
 
 h1 {
@@ -86,6 +68,7 @@ a:hover,:focus {
 
 .source {
   font-size: 0.8rem;
+  margin-bottom: 0.2rem;
 }
 
 body {
@@ -106,7 +89,7 @@ body {
   overflow: hidden;
   background-color: #ece0c6;
 }#intro img {
-  filter: invert(32%) sepia(43%) saturate(300%) hue-rotate(30deg) brightness(98%) contrast(92%);
+  filter: invert(32%) sepia(43%) saturate(300%) hue-rotate(30deg) brightness(120%) contrast(92%);
   width: 100vw;
 }
 
@@ -116,25 +99,25 @@ body {
 }
 
 #clip-nahda {
-  transform: translate(50px,180px);
-  width: 560px;
-  height: 170px;
+  transform: translate(4vw,12.5vw);
+  width: 39vw;
+  height: 12vw;
   background-image: url(assets/hero-nahda.png);
   background-size: 90%;
   clip-path: polygon(10% 0%, 90% 0%, 100% 100%, 5% 100%);;
 }
 #clip-metsa {
-  transform: translate(570px,300px);
-  width: 480px;
-  height: 170px;
+  transform: translate(40vw,21vw);
+  width: 34vw;
+  height: 12vw;
   background-image: url(assets/hero-metsa.png);
   background-size: 90%;
   clip-path: polygon(5% 0%, 90% 0%, 100% 100%, 10% 100%);;
 }
 #clip-puilta {
-  transform: translate(730px,450px);
-  width: 560px;
-  height: 240px;
+  transform: translate(51vw,31vw);
+  width: 39vw;
+  height: 17vw;
   background-image: url(assets/hero-puilta.png);
   background-size: 95%;
   clip-path: polygon(10% 0%, 90% 0%, 100% 100%, 5% 100%);;
@@ -144,32 +127,44 @@ body {
 #about{
   width: 100vw;
   height: 100%;
-  padding: 10vw;
+  padding: 4vw 5vw 5vw 5vw;
   background-color: #ece0c6;
-  display: flex;
-  gap: 5%;
 }#about h1 {
-  font-size: 3rem !important;
+  font-size: 4rem !important;
 }#about p {
   margin-top: 0;
   width: 100%;
 }
-
-.col-left {
-  width: 40%;
+.container-about {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+  gap: 5%;
 }
-.col-right {
+@media screen and (min-width: 35rem) {
+  .container-about {
+    flex-direction: row;
+    margin-bottom: 0;
+  }
+}
+.column-about {
   flex: 1;
+  margin-bottom: 2rem;
+}
+.title-about {
+  flex: 1 100%;
 }
 
 /* ----------------3D / CONTENT------------------ */
 #card-viewport > img {
-  filter: invert(32%) sepia(43%) saturate(300%) hue-rotate(30deg) brightness(98%) contrast(92%);
+  filter: invert(32%) sepia(43%) saturate(300%) hue-rotate(30deg) brightness(120%) contrast(92%);
   position: fixed;
   display: block !important;
   top: 0;
   left: 0;
-  width: 100vw;
+  /* width: 100vw; */
   z-index: -1;
 }
 
@@ -191,13 +186,12 @@ body {
 }
 
 .img { /* Filter for colorizing bw images */
-  filter: invert(32%) sepia(43%) saturate(300%) hue-rotate(30deg) brightness(98%) contrast(92%);
+  filter: invert(32%) sepia(43%) saturate(300%) hue-rotate(30deg) brightness(120%) contrast(92%);
   float: right;
 }
 
 .gif {
-  float: right;
-  mix-blend-mode: multiply;
+  filter: invert(32%) sepia(43%) saturate(300%) hue-rotate(30deg) brightness(120%) contrast(92%);
 }
 
 .card {
@@ -254,7 +248,7 @@ body {
   /* background: none; */
   pointer-events:none;
   width: 200%;
-  filter: invert(32%) sepia(43%) saturate(300%) hue-rotate(30deg) brightness(98%) contrast(92%);
+  filter: invert(32%) sepia(43%) saturate(300%) hue-rotate(30deg) brightness(120%) contrast(92%);
 }
 
 .linkSpanner{
@@ -270,13 +264,26 @@ body {
   padding-bottom: 5%;
 }
 
+.article-end {
+  margin-top: 4rem;
+}
+.article-end h3 {
+  margin-block-start: 1rem;
+}
+.article-end a {
+  font-family: nordvest, sans-serif;
+  font-size: 0.8rem;
+  text-decoration: underline;
+  width: 40vw;
+}
+
 /* ----------------SCROLLYTELLING----------------- */
 
 .scrolly-container {
   display: flex;
   flex-direction: column;
   margin-top: 10rem;
-  margin-bottom: 5rem;
+  margin-bottom: 7rem;
   background-color: #ece0c6;
 }
 @media screen and (min-width: 35rem) {
@@ -294,6 +301,11 @@ body {
 .scrolly-side > div {
   height: 90vh;
 }
+.scrolly-side > div:last-of-type {
+  height: auto;
+  position: sticky;
+  top: 15rem;
+}
 /* .scrolly-last {
   position: sticky !important;
   top: 15rem;
@@ -309,8 +321,7 @@ body {
   width: 100%;
   justify-content: center;
   top: 15rem;
-  mix-blend-mode: multiply;
-  background-color: #ece0c6;
+  /* background-color: #ece0c6; */
 }
 @media screen and (min-width: 35rem) {
   .sticky {
@@ -324,9 +335,9 @@ body {
   height: 100vh;
   background-color: #c5ddf1;
 }
-#footer p {
+/* #footer p {
   font-size: 1.2rem;
-}
+} */
 #footer h3 {
   font-size: 1.2rem;
   text-transform: none;
@@ -341,7 +352,7 @@ body {
   flex-direction: column;
   /* flex-wrap: wrap; */
   align-items: flex-start;
-  margin: 2rem 5rem;
+  padding: 2rem 5rem;
   gap: 5%;
 }
 @media screen and (min-width: 35rem) {
@@ -365,17 +376,6 @@ body {
 }
 
 /* ---------3D SCROLLING on the z axis - Vincent Humeau ------------*/
-:root {
-  --scenePerspective: 1;
-  --scenePerspectiveOriginX: 50;
-  --scenePerspectiveOriginY: 10;
-  --itemZ: 1; /* Gap between each cards */
-  --cameraSpeed: 300; /* Where 1 is the fastest, this var is a multiplying factor of --scenePerspective and --filmZ */
-  --cameraZ: 200; /* Initial camera position */
-  --viewportHeight: 0; /* Viewport height will allow us to set the depth of our scene */
-  --viewportDisplay: none;
-}
-
 .viewport {
   height: calc(var(--viewportHeight) * 1px);
 }
@@ -435,18 +435,18 @@ body {
 }
 
 .viewport .scene3D-container .scene3D > div:nth-child(1) {
-  -webkit-transform: translate3D(-20%, -3%, calc(var(--itemZ) * var(--cameraSpeed) * 1 * -1px));
-          transform: translate3D(-20%, -3%, calc(var(--itemZ) * var(--cameraSpeed) * 1 * -1px));
+  -webkit-transform: translate3D(-30%, 13%, calc(var(--itemZ) * var(--cameraSpeed) * 1 * -1px));
+          transform: translate3D(-30%, 13%, calc(var(--itemZ) * var(--cameraSpeed) * 1 * -1px));
 }
 
 .viewport .scene3D-container .scene3D > div:nth-child(2) {
-  -webkit-transform: translate3D(-15%, -5%, calc(var(--itemZ) * var(--cameraSpeed) * 2 * -1px));
-          transform: translate3D(-15%, -5%, calc(var(--itemZ) * var(--cameraSpeed) * 2 * -1px));
+  -webkit-transform: translate3D(-15%, -45%, calc(var(--itemZ) * var(--cameraSpeed) * 2 * -1px));
+          transform: translate3D(-15%, -45%, calc(var(--itemZ) * var(--cameraSpeed) * 2 * -1px));
 }
 
 .viewport .scene3D-container .scene3D > div:nth-child(3) {
-  -webkit-transform: translate3D(5%, -10%, calc(var(--itemZ) * var(--cameraSpeed) * 3 * -1px));
-          transform: translate3D(5%, -10%, calc(var(--itemZ) * var(--cameraSpeed) * 3 * -1px));
+  -webkit-transform: translate3D(25%, -10%, calc(var(--itemZ) * var(--cameraSpeed) * 3 * -1px));
+          transform: translate3D(25%, -10%, calc(var(--itemZ) * var(--cameraSpeed) * 3 * -1px));
 }
 
 .viewport .scene3D-container .scene3D > div:nth-child(4) {
@@ -470,23 +470,25 @@ body {
 }
 
 .viewport .scene3D-container .scene3D > div:nth-child(8) {
-  -webkit-transform: translate3D(10%, 34%, calc(var(--itemZ) * var(--cameraSpeed) * 8 * -1px));
-          transform: translate3D(10%, 34%, calc(var(--itemZ) * var(--cameraSpeed) * 8 * -1px));
+  -webkit-transform: translate3D(10%, 14%, calc(var(--itemZ) * var(--cameraSpeed) * 8 * -1px));
+          transform: translate3D(10%, 14%, calc(var(--itemZ) * var(--cameraSpeed) * 8 * -1px));
 }
 
 .viewport .scene3D-container .scene3D > div:nth-child(9) {
-  -webkit-transform: translate3D(-13%, 21%, calc(var(--itemZ) * var(--cameraSpeed) * 9 * -1px));
-          transform: translate3D(-13%, 21%, calc(var(--itemZ) * var(--cameraSpeed) * 9 * -1px));
+  -webkit-transform: translate3D(-33%, 21%, calc(var(--itemZ) * var(--cameraSpeed) * 9 * -1px));
+          transform: translate3D(-33%, 21%, calc(var(--itemZ) * var(--cameraSpeed) * 9 * -1px));
 }
 
 .viewport .scene3D-container .scene3D > div:nth-child(10) {
-  -webkit-transform: translate3D(-3%, 47%, calc(var(--itemZ) * var(--cameraSpeed) * 10 * -1px));
-          transform: translate3D(-3%, 47%, calc(var(--itemZ) * var(--cameraSpeed) * 10 * -1px));
+  -webkit-transform: translate3D(43%, 20%, calc(var(--itemZ) * var(--cameraSpeed) * 10 * -1px));
+          transform: translate3D(43%, 20%, calc(var(--itemZ) * var(--cameraSpeed) * 10 * -1px));
+  right: 0;
+  left: unset;
 }
 
 .viewport .scene3D-container .scene3D > div:nth-child(11) {
-  -webkit-transform: translate3D(14%, -20%, calc(var(--itemZ) * var(--cameraSpeed) * 11 * -1px));
-          transform: translate3D(14%, -20%, calc(var(--itemZ) * var(--cameraSpeed) * 11 * -1px));
+  -webkit-transform: translate3D(14%, -10%, calc(var(--itemZ) * var(--cameraSpeed) * 11 * -1px));
+          transform: translate3D(14%, -10%, calc(var(--itemZ) * var(--cameraSpeed) * 11 * -1px));
 }
 
 .viewport .scene3D-container .scene3D > div:nth-child(12) {
@@ -495,8 +497,8 @@ body {
 }
 
 .viewport .scene3D-container .scene3D > div:nth-child(13) {
-  -webkit-transform: translate3D(-2%, -20%, calc(var(--itemZ) * var(--cameraSpeed) * 13 * -1px));
-          transform: translate3D(-2%, -20%, calc(var(--itemZ) * var(--cameraSpeed) * 13 * -1px));
+  -webkit-transform: translate3D(-2%, 20%, calc(var(--itemZ) * var(--cameraSpeed) * 13 * -1px));
+          transform: translate3D(-2%, 20%, calc(var(--itemZ) * var(--cameraSpeed) * 13 * -1px));
 }
 
 .viewport .scene3D-container .scene3D > div:nth-child(14) {
@@ -505,8 +507,8 @@ body {
 }
 
 .viewport .scene3D-container .scene3D > div:nth-child(15) {
-  -webkit-transform: translate3D(-6%, 37%, calc(var(--itemZ) * var(--cameraSpeed) * 15 * -1px));
-          transform: translate3D(-6%, 37%, calc(var(--itemZ) * var(--cameraSpeed) * 15 * -1px));
+  -webkit-transform: translate3D(16%, -7%, calc(var(--itemZ) * var(--cameraSpeed) * 15 * -1px));
+          transform: translate3D(16%, -7%, calc(var(--itemZ) * var(--cameraSpeed) * 15 * -1px));
 }
 
 .viewport .scene3D-container .scene3D > div:nth-child(16) {
@@ -566,3 +568,31 @@ body {
           box-sizing: border-box;
 }
 
+@font-face {
+  font-family: garamondt;
+  src: url(assets/Garamondt-Regular.woff);
+  font-style: normal;
+}
+@font-face {
+  font-family: garamondt;
+  src: url(assets/Garamondt-Italic.woff);
+  font-style: italic;
+}
+@font-face {
+    font-family: nordvest;
+    src: url(assets/NordvestWeb-Regular.eot);
+    src: url(assets/NordvestWeb-Regular.eot?#iefix) format('embedded-opentype'),
+    	 url(assets/NordvestWeb-Regular.woff2) format('woff2'),
+         url(assets/NordvestWeb-Regular.woff) format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: nordvest;
+    src: url(assets/NordvestWeb-RegularItalic.eot);
+    src: url(assets/NordvestWeb-RegularItalic.eot?#iefix) format('embedded-opentype'),
+    	 url(assets/NordvestWeb-RegularItalic.woff2) format('woff2'),
+         url(assets/NordvestWeb-RegularItalic.woff) format('woff');
+    font-weight: normal;
+    font-style: italic;
+}

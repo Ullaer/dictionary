@@ -21,7 +21,7 @@
       flex-direction: column;
       flex-wrap: wrap;
       align-items: center;
-      margin-bottom: 2rem;
+      justify-content: flex-start;
     }
     @media screen and (min-width: 35rem) {
       .viz-container {
@@ -31,9 +31,9 @@
     .viz-title {
       flex: 1 100%;
     }
-    .viz-column {
-      flex: 1 50%;
-    }
+    /* .viz-column {
+      flex: auto;
+    } */
     .after {
       fill: #747c22;
     }
@@ -55,9 +55,9 @@
     <h2>Mänty, petäjä, honka, aihki, lakkapää, kelo</h2>
     <p class="translation">(different stages of pine's life)</p>
     <img src="assets/lakkapaa.png" alt="" width="50%" class="img">
-    <p>Measured in the natural lifespan of pines, most of them are cut at 60 to 70 years old when they are about to come of age. Mänty means pine (pinus sylvestris). A fully grown pine is called petäjä. At this age the tree is considered ‘regeneration-ready’, meaning the forest can be logged.
-    </p><p>At around 100 to 150 years old, the pine has reached its full height and continues growing only width from its top. It is said to have a lakkapää top. Such an old pine is called either honka, or aihki, a word derived from Sámi languages. The lifespan is normally 150–300 years, with the oldest recorded specimens in Lapland, Northern Finland over 760 years.
-    </p><p>Unlike one might imagine, you can’t always tell the age of a pine by its height or width. The yearly growth can be very modest, and a real clue might be a twisted and knobbly trunk. When a tree dies standing, it’s called a kelo.
+    <p>Measured in the natural lifespan of pines, most of them are cut at 60 to 70 years old when they are about to come of age. <i>Mänty</i> means pine (pinus sylvestris). A fully grown pine is called <i>petäjä</i>. At this age the tree is considered <i>regeneration-ready</i>, meaning the forest can be logged.
+    </p><p>At around 100 to 150 years old, the pine has reached its full height and continues growing only width from its top. It is said to have a <i>lakkapää</i> top. Such an old pine is called either <i>honka</i>, or <i>aihki</i>, a word derived from Sámi languages. The lifespan is normally 150–300 years, with the oldest recorded specimens in Lapland, Northern Finland over 760 years.
+    </p><p>Unlike one might imagine, you can’t always tell the age of a pine by its height or width. The yearly growth can be very modest, and a real clue might be a twisted and knobbly trunk. When a tree dies standing, it’s called a <i>kelo</i>.
     </p><p>There is exceptional data available about the forests of Finland dating back to 1750. Forests have been used intensively for centuries in Southern Finland. During the last 100 years, some recovery has happened in some of the metrics, but not in the age of trees. In Northern Finland the area of forests used for forestry have increased, and the amount of forests with an average age over 120 years have decreased from 55% to 17%. According to professor Mikko Mönkkönen averages can hide significant changes: the forests of Southern Finland have become more homogenous. We have already lost many forests valuable to biodiversity.</p>
   </div>
   <section class="viz-container">
@@ -75,15 +75,21 @@
   </section>
   <p class="source">
     At the forest level, the age of the forest is typically determined by the age of the main tree species. The visualisations use data from National Forest Inventory or Finland in which the age of the forest is the tree basal area weighted average age of living trees.<br>
-    Source: Natural Resources Institute Finland
+    Data source: Natural Resources Institute Finland
   </p>
+  <div class="article-end">
+    <p class="source">Sources:</p>
+    <a href="https://like.fi/kirjat/metsa-meidan-jalkeemme/" target="_blank"><i>Metsä meidän jälkeemme</i></a>
+    <br>
+    <a href="https://areena.yle.fi/audio/1-51013677" target="_blank">Radioshow Metsäradio</a>
+  </div>
 
   <script>
     //Code from d3-graph-gallery.com
     // set the dimensions and margins of the graph
     var margin = {top: 10, right: 30, bottom: 20, left: 25},
-        width = 460 - margin.left - margin.right,
-        height = 400 - margin.top - margin.bottom;
+        width = 360 - margin.left - margin.right,
+        height = 300 - margin.top - margin.bottom;
 
     //////// VIZ 1 //////////////////
     // append the svg object to the body of the page

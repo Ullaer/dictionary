@@ -1,4 +1,5 @@
-let cards = 13;
+let cards = 14;
+let illustrations = 10;
 
 const perspectiveOrigin = {
   x: parseFloat(
@@ -17,7 +18,7 @@ const perspectiveOrigin = {
 function inView(id){ //The function to check if ID is in view, returns TRUE/FALSE
   var object = document.getElementById(id);
   var y = object.getBoundingClientRect().y;
-  //console.log(object.getBoundingClientRect().y, window.innerHeight)
+  // console.log(id, object.getBoundingClientRect().y, window.innerHeight)
   if( y < 0 ){
       return true;
   }else{
@@ -26,10 +27,8 @@ function inView(id){ //The function to check if ID is in view, returns TRUE/FALS
 }
 
 document.addEventListener("DOMContentLoaded", function() {
+  window.addEventListener("mousemove", moveLetters);
   window.addEventListener("scroll", function() {
-    if(inView("intro")){
-      window.addEventListener("mousemove", moveLetters);
-    }  
     if(inView("card-viewport")){
       document.documentElement.style.setProperty("--viewportDisplay", "block");
       moveCamera();
@@ -49,7 +48,7 @@ function moveCamera() {
 }
 
 function setSceneHeight() {
-  const numberOfItems = cards + 6;
+  const numberOfItems = cards + illustrations;
   const itemZ = parseFloat(
     getComputedStyle(document.documentElement).getPropertyValue("--itemZ")
   );
@@ -101,8 +100,8 @@ function moveCameraAngle(event) { //Changes perspective: moves elements accordin
   var button = document.getElementById("buttonClose");
   var mainBody = document.getElementById("main-body");
   for (var i = 0 ; i < cards; i++) { //When card is clicked, show the iframe
-    card[i].addEventListener("click", function(){
-      console.log("click",i)
+    card[i].addEventListener("click", function(e){
+      console.log(this)
       iframe.classList.toggle('hide');
       button.classList.toggle('hide');
       mainBody.classList.toggle('no-scroll');
@@ -112,17 +111,17 @@ function moveCameraAngle(event) { //Changes perspective: moves elements accordin
 function buttonClose(){
   var d = window.parent.document;
   var iframe = d.getElementById('iframe');
+  console.log("close")
   iframe.classList.toggle('hide');
   button.classList.toggle('hide');
   d.body.classList.toggle('no-scroll');
 }
 //Open and close iframe 2
-var footerLink = document.getElementsByClassName("footer-link");
-// console.log(footerLink)
-var iframe2 = document.getElementById("iframe2");
-var button = document.getElementById("buttonClose");
-var mainBody = document.getElementById("main-body");
-// if(inView("card-viewport")){
+// var footerLink = document.getElementsByClassName("footer-link");
+// var iframe2 = document.getElementById("iframe2");
+// var button = document.getElementById("buttonClose");
+// var mainBody = document.getElementById("main-body");
+// // if(inView("card-viewport")){
 //   console.log("3d")
 //   for (var i = 0 ; i < 20; i++) { //When card is clicked, show the iframe
 //     footerLink[i].addEventListener("click", function(){
@@ -133,13 +132,13 @@ var mainBody = document.getElementById("main-body");
 //     })
 //   }
 // }
-function buttonClose(){
-  var d = window.parent.document;
-  var iframe = d.getElementById('iframe');
-  iframe.classList.toggle('hide');
-  button.classList.toggle('hide');
-  d.body.classList.toggle('no-scroll');
-}
+// function buttonClose(){
+//   var d = window.parent.document;
+//   var iframe = d.getElementById('iframe');
+//   iframe.classList.toggle('hide');
+//   button.classList.toggle('hide');
+//   d.body.classList.toggle('no-scroll');
+// }
 
 //Hero image: letters move with mouse    
 function moveLetters(event) { //Changes perspective: moves elements according to mouse coordinates
@@ -172,4 +171,12 @@ function changeBg() {
     .domain([height/4, height]);
   var mainBody = document.getElementById("main-body")
   mainBody.style.backgroundColor = bgScale(window.pageYOffset);
+  
+  // const currentScroll = window.pageYOffset;
+  // if (currentScroll <= height+(height/8)) {
+  //   opacity = 1;
+  // } else {
+  //   opacity = 0;
+  // }
+  // document.getElementById("bg-img").style.opacity = opacity;
 }
