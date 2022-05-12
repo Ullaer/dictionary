@@ -352,14 +352,13 @@ body {
 }
 
 /* ----------------FOOTER------------------ */
-
 #footer {
-  height: 100vh;
+  min-height: 100vh;
   background-color: #c5ddf1;
 }
-/* #footer p {
+#footer p:not(.source) {
   font-size: 1.2rem;
-} */
+}
 #footer h3 {
   font-size: 1.2rem;
   text-transform: none;
